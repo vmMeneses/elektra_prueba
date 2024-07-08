@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/navigation_grahp"
+    app:startDestination="@id/homeFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.meneses.appproductelekra.ui.home.HomeFragment"
+        android:label="fragment_home"
+        tools:layout="@layout/fragment_home" >
+        <action
+            android:id="@+id/action_homeFragment_to_productListFragment"
+            app:destination="@id/productListFragment" />
+        <argument
+            android:name="nameproduct"
+            app:argType="string"
+            android:defaultValue="sin_nombre" />
+        <argument
+            android:name="imageproduct"
+            app:argType="string"
+            android:defaultValue="sin_imagen" />
+        <argument
+            android:name="categoryproduct"
+            app:argType="string"
+            android:defaultValue="sin_category" />
+        <argument
+            android:name="priceproduct"
+            app:argType="float"
+            android:defaultValue="0.0" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/productListFragment"
+        android:name="com.meneses.appproductelekra.ui.productlist.view.ProductListFragment"
+        android:label="fragment_product_list"
+        tools:layout="@layout/fragment_product_list" >
+        <action
+            android:id="@+id/action_productListFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <argument
+            android:name="prueba"
+            app:argType="string" />
+    </fragment>
+
+</navigation>
