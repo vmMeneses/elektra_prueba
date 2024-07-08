@@ -8,6 +8,8 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.bumptech.glide.Glide
+import com.bumptech.glide.load.engine.DiskCacheStrategy
 import com.meneses.appproductelekra.databinding.FragmentHomeBinding
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -42,6 +44,23 @@ class HomeFragment : Fragment() {
         Log.e("arguments", "imageName = $imageProduct")
         Log.e("arguments", "PriceName = $priceProduct")
         Log.e("arguments", "Category = $categoryProduct")
+        initViewProduct(nameProduct,imageProduct,priceProduct,categoryProduct)
+    }
+
+    private fun initViewProduct(nameProduct: String, imageProduct: String, priceProduct: Float, categoryProduct: String) {
+        if(nameProduct != "sin_nombre"){
+            binding.CardDetailProduct.visibility = View.VISIBLE
+            binding.TextViewName.text = nameProduct
+            binding.TextViewPrice.text = "$ ${priceProduct} "
+            Glide.with(binding.root)
+                .load(imageProduct)
+                .diskCacheStrategy(DiskCacheStrategy.ALL)
+                .centerCrop()
+                .into(binding.ImageViewProduct)
+        }else{
+            binding.CardDetailProduct.visibility = View.GONE
+        }
+
     }
 
     private fun initUI() {
